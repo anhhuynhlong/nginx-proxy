@@ -1,0 +1,2 @@
+sudo docker build --no-cache -t mynginx-proxy .
+sudo docker run -d --rm --name myproxy -p 8080:8080  mynginx-proxy
