@@ -1,2 +1,10 @@
-sudo docker build --no-cache -t mynginx-proxy .
-sudo docker run -d --rm --name myproxy -p 8080:8080  mynginx-proxy
+
+#Start Ngrok on a port (make sure the port is available
+ngrok http 8080
+
+# Build nginx proxy (this is user to redirect request/response
+docker build --no-cache -t mynginx-proxy .
+
+# Start the proxy container
+# set PUBLIC_SECURE_DOMAIN to ngrok domain return in step 1
+run --rm --name mynginx-proxy  -p 8080:8080 -e PUBLIC_SECURE_DOMAIN=d9d418bd.ngrok.io  mynginx-proxy
